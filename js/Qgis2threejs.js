@@ -1499,6 +1499,7 @@ Q3D.E = function (id) {
 	}
 
 	gui.modules = [];
+	gui.translations = {};
 
 	gui.init = function () {
 		// tool buttons
@@ -1581,6 +1582,12 @@ Q3D.E = function (id) {
 		for (var i = 0; i < gui.modules.length; i++) {
 			gui.modules[i].init();
 		}
+
+
+		app.loadJSONFile("./ru.json", (obj) => {
+			debugger
+			gui.translations = obj;
+		})
 	};
 
 	gui.clean = function () {
@@ -1712,7 +1719,7 @@ Q3D.E = function (id) {
 				var row;
 				for (var i = 0, l = layer.properties.propertyNames.length; i < l; i++) {
 					row = document.createElement("tr");
-					row.innerHTML = "<td>" + layer.properties.propertyNames[i] + "</td>" +
+					row.innerHTML = "<td>" + gui.translate(layer.properties.propertyNames[i]) + "</td>" +
 									"<td>" + obj.userData.properties[i] + "</td>";
 					e.appendChild(row);
 				}
@@ -1723,6 +1730,10 @@ Q3D.E = function (id) {
 			}
 		}
 		gui.popup.show("queryresult");
+	};
+
+	gui.translate = function (param_name) {
+		return gui.translations[param_name]
 	};
 
 	gui.showPrintDialog = function () {

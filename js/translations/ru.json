@@ -1,0 +1,13 @@
+{
+    "name": "Название",
+    "folders": "folders",
+    "description": "Описание",
+    "altitude": "Высота",
+    "alt_mode": "alt_mode",
+    "time_begin": "time_begin",
+    "time_end": "time_end",
+    "time_when": "time_when",
+    "link": "link",
+    "number": "number",
+    "numberCave_Name": "numberCave_Name"
+}
