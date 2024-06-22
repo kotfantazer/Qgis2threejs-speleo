@@ -1503,7 +1503,8 @@ Q3D.E = function (id) {
 		"name": "Название",
 		"description": "Описание",
 		"altitude": "Высота",
-		"numberCave_Name": "Кадастровый номер"
+		"numberCave_Name": "Кадастровый номер",
+		"link": "Ссылка"
 	};
 
 	gui.init = function () {
@@ -1726,8 +1727,13 @@ Q3D.E = function (id) {
 					var param_name = layer.properties.propertyNames[i];
 					if (gui.translations[param_name]) {
 						row = document.createElement("tr");
+						data = obj.userData.properties[i];
+						if (param_name == "link") {
+							data = `<a href="${data}">Ссылка</a>`;
+						}
+
 						row.innerHTML = "<td>" + gui.translate(param_name) + "</td>" +
-							"<td>" + obj.userData.properties[i] + "</td>";
+							"<td>" + data + "</td>";
 						e.appendChild(row);
 					}
 				}
