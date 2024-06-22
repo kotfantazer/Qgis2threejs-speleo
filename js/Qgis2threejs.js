@@ -1727,7 +1727,7 @@ Q3D.E = function (id) {
 					var param_name = layer.properties.propertyNames[i];
 					if (gui.translations[param_name]) {
 						row = document.createElement("tr");
-						data = obj.userData.properties[i];
+						var data = obj.userData.properties[i];
 						if (param_name == "link") {
 							data = `<a href="${data}">Ссылка</a>`;
 						}
