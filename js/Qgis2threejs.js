@@ -1499,7 +1499,12 @@ Q3D.E = function (id) {
 	}
 
 	gui.modules = [];
-	gui.translations = {};
+	gui.translations = {
+		"name": "Название",
+		"description": "Описание",
+		"altitude": "Высота",
+		"numberCave_Name": "Кадастровый номер"
+	};
 
 	gui.init = function () {
 		// tool buttons
@@ -1584,10 +1589,10 @@ Q3D.E = function (id) {
 		}
 
 
-		app.loadJSONFile("./ru.json", (obj) => {
-			debugger
-			gui.translations = obj;
-		})
+		//app.loadSceneFile("./ru.json", (obj) => {
+		//	debugger
+		//	gui.translations = obj;
+		//})
 	};
 
 	gui.clean = function () {
@@ -1718,10 +1723,13 @@ Q3D.E = function (id) {
 			if (layer && layer.properties.propertyNames !== undefined) {
 				var row;
 				for (var i = 0, l = layer.properties.propertyNames.length; i < l; i++) {
-					row = document.createElement("tr");
-					row.innerHTML = "<td>" + gui.translate(layer.properties.propertyNames[i]) + "</td>" +
-									"<td>" + obj.userData.properties[i] + "</td>";
-					e.appendChild(row);
+					var param_name = layer.properties.propertyNames[i];
+					if (gui.translations[param_name]) {
+						row = document.createElement("tr");
+						row.innerHTML = "<td>" + gui.translate(param_name) + "</td>" +
+							"<td>" + obj.userData.properties[i] + "</td>";
+						e.appendChild(row);
+					}
 				}
 				e.classList.remove("hidden");
 			}
